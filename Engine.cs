@@ -32,7 +32,6 @@ namespace L20250217
 
         protected bool isRunning = true;
 
-        protected ConsoleKeyInfo keyInfo;
 
         public void Load()
         {
@@ -85,9 +84,9 @@ namespace L20250217
             }
         }
 
-        public void Input()
+        public void ProcessInput()
         {
-            keyInfo = Console.ReadKey();
+            Input.Process();
         }
 
 
@@ -98,6 +97,7 @@ namespace L20250217
 
         protected void Render()
         {
+            Console.Clear();
             world.Render();
         }
 
@@ -106,7 +106,7 @@ namespace L20250217
         {
             while (isRunning)
             {
-                Input();
+                ProcessInput();
                 Update();
                 Render();
             }
