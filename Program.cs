@@ -6,7 +6,7 @@
         {
             Engine engine = new Engine();
 
-            //engine.Load();
+            engine.Load();
 
             engine.Run();
 
