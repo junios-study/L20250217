@@ -15,6 +15,7 @@ namespace L20250217
             X = inX;
             Y = inY;
             Shape = inShape;
+            orderLayer = 5;
         }
 
         public override void Update()

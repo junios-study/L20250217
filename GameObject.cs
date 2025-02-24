@@ -11,6 +11,7 @@ namespace L20250217
         public int X;
         public int Y;
         public char Shape; //Mesh, Spirte
+        public int orderLayer;
 
         public virtual void Update()
         {

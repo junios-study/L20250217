@@ -13,10 +13,11 @@ namespace L20250217
             X = inX;
             Y = inY;
             Shape = inShape;
+            orderLayer = 1;
         }
 
-        public override void Render()
-        {
-        }
+        //public override void Render()
+        //{
+        //}
     }
 }

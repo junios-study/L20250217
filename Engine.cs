@@ -62,8 +62,8 @@ namespace L20250217
                     }
                     else if (scene[y][x] == ' ')
                     {
-                        Floor floor = new Floor(x, y, scene[y][x]);
-                        world.Instanciate(floor);
+                        //Floor floor = new Floor(x, y, scene[y][x]);
+                        //world.Instanciate(floor);
                     }
                     else if (scene[y][x] == 'P')
                     {
@@ -80,8 +80,15 @@ namespace L20250217
                         Goal goal = new Goal(x, y, scene[y][x]);
                         world.Instanciate(goal);
                     }
+
+                    Floor floor = new Floor(x, y, ' ');
+                    world.Instanciate(floor);
                 }
             }
+
+            //loading complete
+            //sort
+            world.Sort();
         }
 
         public void ProcessInput()
