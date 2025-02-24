@@ -11,6 +11,14 @@ namespace L20250217
         List<GameObject> gameObjects = new List<GameObject>();
         //List<GameObject> visibleList = new List<GameObject>();
 
+        public List<GameObject> GetAllGameObjects
+        {
+            get
+            {
+                return gameObjects;
+            }
+        }
+
         //[1][0][2][3][5][6][7][8][9]
         //
         //[][][][][][][][][]
