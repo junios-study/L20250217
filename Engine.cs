@@ -140,7 +140,6 @@ namespace L20250217
                 ProcessInput();
                 Update();
                 Render();
-                Thread.Sleep(100);
             }
         }
 

@@ -17,7 +17,7 @@ namespace L20250217
         {
             if (Console.KeyAvailable)
             {
-                keyInfo = Console.ReadKey();
+                keyInfo = Console.ReadKey(false);
             }
         }
 

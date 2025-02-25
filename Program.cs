@@ -8,7 +8,7 @@ namespace L20250217
 
         static void Main(string[] args)
         {
-            Engine.Instance.Load("level02.map");
+            Engine.Instance.Load("level01.map");
             Engine.Instance.Run();
 
         }
