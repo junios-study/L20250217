@@ -10,6 +10,10 @@ namespace L20250217
     {
         private Random rand = new Random();
 
+
+        private float elapsedTime = 0;
+
+
         public Monster(int inX, int inY, char inShape)
         {
             X = inX;
@@ -21,36 +25,48 @@ namespace L20250217
 
         public override void Update()
         {
-            int Direction = rand.Next(0, 4);
+            if (elapsedTime >= 0.0005f)
+            {
 
-            if (Direction == 0)
-            {
-                if (!PredictCollision(X, Y - 1))
+                int Direction = rand.Next(0, 4);
+
+                if (Direction == 0)
                 {
-                    Y--;
+                    if (!PredictCollision(X, Y - 1))
+                    {
+                        Y--;
+                    }
                 }
-            }
-            if (Direction == 1)
-            {
-                if (!PredictCollision(X, Y + 1))
+                if (Direction == 1)
                 {
-                    Y++;
+                    if (!PredictCollision(X, Y + 1))
+                    {
+                        Y++;
+                    }
                 }
-            }
-            if (Direction == 2)
-            {
-                if (!PredictCollision(X - 1, Y))
+                if (Direction == 2)
                 {
-                    X--;
+                    if (!PredictCollision(X - 1, Y))
+                    {
+                        X--;
+                    }
                 }
-            }
-            if (Direction == 3)
-            {
-                if (!PredictCollision(X + 1, Y))
+                if (Direction == 3)
                 {
-                    X++;
+                    if (!PredictCollision(X + 1, Y))
+                    {
+                        X++;
+                    }
                 }
+                elapsedTime = 0.0f;
             }
+            else
+            {
+                elapsedTime += Time.deltaTime;
+            }
+
+            Console.SetCursorPosition(30, 10);
+            Console.Write(Time.deltaTime);
         }
     }
 }

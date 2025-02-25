@@ -16,7 +16,9 @@ namespace L20250217
 
         static protected Engine instance;
 
+        //더블 버퍼링
         static public char[,] backBuffer = new char[20, 40];
+        static public char[,] frontBuffer = new char[20, 40];
 
         static public Engine Instance
         {
@@ -120,26 +122,43 @@ namespace L20250217
             world.Render();
 
             //메모리에 있는걸 한방에 붙여줘
+            //back <-> front (flip)
             for(int Y = 0; Y < 20; ++Y)
             {
                 for(int X = 0; X < 40; ++X)
                 {
-                    Console.SetCursorPosition(X, Y);
-                    Console.Write(backBuffer[Y, X]);
+                    if (Engine.frontBuffer[Y, X] != Engine.backBuffer[Y, X])
+                    {
+                        Engine.frontBuffer[Y, X] = Engine.backBuffer[Y, X];
+                        Console.SetCursorPosition(X, Y);
+                        Console.Write(frontBuffer[Y, X]);
+                    }
                 }
             }
         }
 
-
+        public DateTime lastTime;
 
         public void Run()
         {
+            float frameTime = 1000.0f / 60.0f;
+            float elapsedTime = 0.0f;
             Console.CursorVisible = false;
             while (isRunning)
             {
-                ProcessInput();
-                Update();
-                Render();
+                Time.Update();
+                //if (elapsedTime >= frameTime)
+                //{
+                    ProcessInput();
+                    Update();
+                    Render();
+                    Input.ClearInput();
+                    elapsedTime = 0;
+                //}
+                //else
+                //{
+                //    elapsedTime += Time.deltaTime;
+                //}
             }
         }
 
