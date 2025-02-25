@@ -16,6 +16,8 @@ namespace L20250217
 
         static protected Engine instance;
 
+        static public char[,] backBuffer = new char[20, 40];
+
         static public Engine Instance
         {
             get
@@ -113,18 +115,32 @@ namespace L20250217
 
         protected void Render()
         {
-            Console.Clear();
+            //IO 제일 느려, 모니터 출력, 메모리
+            //Console.Clear();
             world.Render();
+
+            //메모리에 있는걸 한방에 붙여줘
+            for(int Y = 0; Y < 20; ++Y)
+            {
+                for(int X = 0; X < 40; ++X)
+                {
+                    Console.SetCursorPosition(X, Y);
+                    Console.Write(backBuffer[Y, X]);
+                }
+            }
         }
+
 
 
         public void Run()
         {
+            Console.CursorVisible = false;
             while (isRunning)
             {
                 ProcessInput();
                 Update();
                 Render();
+                Thread.Sleep(100);
             }
         }
 
