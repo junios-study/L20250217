@@ -141,8 +141,8 @@ namespace L20250217
 
         public void Run()
         {
-            float frameTime = 1000.0f / 60.0f;
-            float elapsedTime = 0.0f;
+            int frameTime = (int)(1000.0f / 60.0f);
+            int elapsedTime = 0;
             Console.CursorVisible = false;
             while (isRunning)
             {

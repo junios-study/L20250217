@@ -8,11 +8,11 @@ namespace L20250217
 {
     public class Time
     {
-        public static int deltaTime
+        public static float deltaTime
         {
             get
             {
-                return deltaTimeSpan.Milliseconds;
+                return (float)deltaTimeSpan.TotalMilliseconds;
             }
 
         }

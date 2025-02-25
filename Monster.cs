@@ -25,9 +25,8 @@ namespace L20250217
 
         public override void Update()
         {
-            if (elapsedTime >= 0.0005f)
+            if (elapsedTime >= 500.0f)
             {
-
                 int Direction = rand.Next(0, 4);
 
                 if (Direction == 0)
@@ -58,7 +57,7 @@ namespace L20250217
                         X++;
                     }
                 }
-                elapsedTime = 0.0f;
+                elapsedTime = 0;
             }
             else
             {
