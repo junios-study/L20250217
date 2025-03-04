@@ -47,7 +47,7 @@ namespace L20250217
                     X--;
                 }
             }
-            if (Input.GetKeyDown(SDL_Keycode.SDLK_d) || Input.GetKeyDown(SDL_Keycode.SDLK_DOWN))
+            if (Input.GetKeyDown(SDL_Keycode.SDLK_d) || Input.GetKeyDown(SDL_Keycode.SDLK_RIGHT))
             {
                 if (!PredictCollision(X + 1, Y))
                 {
