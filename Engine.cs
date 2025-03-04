@@ -148,9 +148,10 @@ namespace L20250217
 
         protected void Render()
         {
-            world.Render();
             SDL.SDL_SetRenderDrawColor(myRenderer, 0, 51, 102, 0);
             SDL.SDL_RenderClear(myRenderer);
+
+            world.Render();
 
             for (int Y = 0; Y < 20; ++Y)
             {
