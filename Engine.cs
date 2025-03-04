@@ -148,7 +148,7 @@ namespace L20250217
 
         protected void Render()
         {
-            SDL.SDL_SetRenderDrawColor(myRenderer, 0, 51, 102, 0);
+            SDL.SDL_SetRenderDrawColor(myRenderer, 0, 0, 0, 0);
             SDL.SDL_RenderClear(myRenderer);
 
             world.Render();
