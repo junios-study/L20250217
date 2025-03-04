@@ -15,6 +15,10 @@ namespace L20250217
             Shape = inShape;
             orderLayer = 2;
             isCollide = true;
+
+            color.r = 255;
+            color.g = 0;
+            color.b = 0;
         }
     }
 }

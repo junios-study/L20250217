@@ -17,6 +17,10 @@ namespace L20250217
             Shape = inShape;
             orderLayer = 4;
             isTrigger = true;
+
+            color.r = 0;
+            color.g = 0;
+            color.b = 255;
         }
 
         public override void Update()
