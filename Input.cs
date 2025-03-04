@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDL2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,10 @@ namespace L20250217
 
         static public void Process()
         {
-            if (Console.KeyAvailable)
-            {
-                keyInfo = Console.ReadKey(true);
-            }
+            //if (Console.KeyAvailable)
+            //{
+            //    keyInfo = Console.ReadKey(true);
+            //}
         }
 
         static protected ConsoleKeyInfo keyInfo;
@@ -26,6 +27,11 @@ namespace L20250217
         static public bool GetKeyDown(ConsoleKey key)
         {
             return (keyInfo.Key == key);
+        }
+
+        static public bool GetKeyDown(SDL.SDL_Keycode key)
+        {
+            return (Engine.Instance.myEvent.key.keysym.sym == key);
         }
 
         public static void ClearInput()
