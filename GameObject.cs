@@ -9,6 +9,9 @@ namespace L20250217
 {
     public class GameObject
     {
+        List<Component> components = new List<Component>();
+
+
         public int X;
         public int Y;
         public char Shape; //Mesh, Spirte
@@ -28,6 +31,9 @@ namespace L20250217
 
         protected SDL.SDL_Color colorKey;
 
+        private float elapsedTime = 0;
+
+
         public GameObject()
         {
             colorKey.r = 255;
@@ -36,13 +42,22 @@ namespace L20250217
             colorKey.a = 255;
         }
 
+        public T AddComponent<T>(T inComponent)  where T : Component
+        {
+            components.Add(inComponent);
+
+            return inComponent;
+        }
+
         public virtual void Update()
         {
-
+            //모든 컴포넌트의 update 함수 실행해줘.
         }
 
         public virtual void Render()
         {
+            //모든 컴포넌트중에 그리는 애만 호출 해줘
+
             //X,Y 위치에 Shape 출력
             //            Console.SetCursorPosition(X, Y);
             //            Console.Write(Shape);
@@ -66,17 +81,26 @@ namespace L20250217
 
                 SDL.SDL_Rect sourceRect; //이미지
 
-                spriteIndexY = 1;
                 if (isAnimaion)
                 {
+                    if (elapsedTime >= 100.0f)
+                    {
+                        spriteIndexX++;
+                        spriteIndexX = spriteIndexX % 5;
+                        elapsedTime = 0;
+                    }
+                    else
+                    {
+                        elapsedTime += Time.deltaTime;
+                    }
+
+
                     int cellSizeX = surface->w / 5;
                     int cellSizeY = surface->h / 5;
                     sourceRect.x = cellSizeX * spriteIndexX;
                     sourceRect.y = cellSizeY * spriteIndexY; 
                     sourceRect.w = cellSizeX;
                     sourceRect.h = cellSizeY;
-                    spriteIndexX++;
-                    spriteIndexX = spriteIndexX % 5;
                 }
                 else
                 {

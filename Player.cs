@@ -10,6 +10,9 @@ namespace L20250217
 {
     public class Player : GameObject
     {
+
+
+
         public Player(int inX, int inY, char inShape)
         {
             X = inX;
@@ -40,6 +43,7 @@ namespace L20250217
                 {
                     Y--;
                 }
+                spriteIndexY = 2;
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_s) || Input.GetKeyDown(SDL_Keycode.SDLK_DOWN))
             {
@@ -47,6 +51,7 @@ namespace L20250217
                 {
                     Y++;
                 }
+                spriteIndexY = 3;
 
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_a) || Input.GetKeyDown(SDL_Keycode.SDLK_LEFT))
@@ -55,6 +60,7 @@ namespace L20250217
                 {
                     X--;
                 }
+                spriteIndexY = 0;
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_d) || Input.GetKeyDown(SDL_Keycode.SDLK_RIGHT))
             {
@@ -62,6 +68,7 @@ namespace L20250217
                 {
                     X++;
                 }
+                spriteIndexY = 1;
             }
         }
     }
