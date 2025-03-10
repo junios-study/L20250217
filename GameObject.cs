@@ -14,9 +14,11 @@ namespace L20250217
         public bool isTrigger = false;
         public bool isCollide = false;
 
-        string Name;
+        public string Name;
 
         protected static int gameObjectCount = 0;
+
+        protected Transform transform;
 
         public GameObject()
         {
@@ -32,12 +34,13 @@ namespace L20250217
 
         public void Init()
         {
-            AddComponent<Transform>(new Transform());
+            transform = AddComponent<Transform>(new Transform());
         }
 
         public T AddComponent<T>(T inComponent)  where T : Component
         {
             components.Add(inComponent);
+            inComponent.gameObject = this;
 
             return inComponent;
         }
