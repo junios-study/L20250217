@@ -10,16 +10,16 @@ namespace L20250217
     {
         public Floor(int inX, int inY, char inShape)
         {
-            X = inX;
-            Y = inY;
-            Shape = inShape;
-            orderLayer = 1;
+            //X = inX;
+            //Y = inY;
+            //Shape = inShape;
+            //orderLayer = 1;
 
-            color.r = 0;
-            color.g = 0;
-            color.b = 0;
+            //color.r = 0;
+            //color.g = 0;
+            //color.b = 0;
 
-            LoadBmp("data/floor.bmp");
+            //LoadBmp("data/floor.bmp");
         }
 
         //public override void Render()

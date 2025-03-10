@@ -10,17 +10,17 @@ namespace L20250217
     {
         public Wall(int inX, int inY, char inShape)
         {
-            X = inX;
-            Y = inY;
-            Shape = inShape;
-            orderLayer = 2;
-            isCollide = true;
+            //X = inX;
+            //Y = inY;
+            //Shape = inShape;
+            //orderLayer = 2;
+            //isCollide = true;
 
-            color.r = 255;
-            color.g = 0;
-            color.b = 0;
+            //color.r = 255;
+            //color.g = 0;
+            //color.b = 0;
 
-            LoadBmp("data/wall.bmp");
+            //LoadBmp("data/wall.bmp");
         }
     }
 }

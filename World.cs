@@ -38,30 +38,26 @@ namespace L20250217
 
         public void Render()
         {
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                gameObjects[i].Render();
-            }
+            //for (int i = 0; i < gameObjects.Count; i++)
+            //{
+            //    gameObjects[i].Render();
+            //}
         }
 
         public void Sort()
         {
-            //gameObjects.Sort();
-
-            //gameObjects[i] > gameObjects[j]
-
-            for (int i = 0; i < gameObjects.Count; i++)
-            {
-                for (int j = i + 1; j < gameObjects.Count; j++)
-                {
-                    if (gameObjects[i].orderLayer - gameObjects[j].orderLayer > 0)
-                    {
-                        GameObject temp = gameObjects[i];
-                        gameObjects[i] = gameObjects[j];
-                        gameObjects[j] = temp;
-                    }
-                }
-            }
+            //for (int i = 0; i < gameObjects.Count; i++)
+            //{
+            //    for (int j = i + 1; j < gameObjects.Count; j++)
+            //    {
+            //        if (gameObjects[i].orderLayer - gameObjects[j].orderLayer > 0)
+            //        {
+            //            GameObject temp = gameObjects[i];
+            //            gameObjects[i] = gameObjects[j];
+            //            gameObjects[j] = temp;
+            //        }
+            //    }
+            //}
         }
 
     }

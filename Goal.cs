@@ -10,17 +10,17 @@ namespace L20250217
     {
         public Goal(int inX, int inY, char inShape)
         {
-            X = inX;
-            Y = inY;
-            Shape = inShape;
-            orderLayer = 3;
-            isTrigger = true;
+            //X = inX;
+            //Y = inY;
+            //Shape = inShape;
+            //orderLayer = 3;
+            //isTrigger = true;
 
-            color.r = 0;
-            color.g = 255;
-            color.b = 255;
+            //color.r = 0;
+            //color.g = 255;
+            //color.b = 255;
 
-            LoadBmp("data/goal.bmp");
+            //LoadBmp("data/goal.bmp");
         }
     }
 }
