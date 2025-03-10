@@ -9,7 +9,7 @@ namespace L20250217
 {
     public class GameObject
     {
-        List<Component> components = new List<Component>();
+        public List<Component> components = new List<Component>();
 
         public bool isTrigger = false;
         public bool isCollide = false;
@@ -18,7 +18,7 @@ namespace L20250217
 
         protected static int gameObjectCount = 0;
 
-        protected Transform transform;
+        public Transform transform;
 
         public GameObject()
         {
@@ -62,6 +62,19 @@ namespace L20250217
             //    }
             //}
             return false;
+        }
+
+        public T GetComponent<T>() where T : Component
+        {
+            foreach (Component component in components)
+            {
+                if (component is T)
+                {
+                    return component as T;
+                }
+            }
+
+            return null;
         }
     }
 }

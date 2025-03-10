@@ -23,53 +23,45 @@ namespace L20250217
         protected int spriteIndexX = 0;
         protected int spriteIndexY = 0;
 
-        protected SDL.SDL_Color colorKey;
+        public SDL.SDL_Color colorKey;
 
         protected string filename;
 
         private float elapsedTime = 0;
 
+        private SDL.SDL_Rect sourceRect;            //source image
+        private SDL.SDL_Rect destinationRect;       //screen size
+
+        public float processTime = 100.0f;
+        public int maxCellCountX = 5;
+        public int maxCellCountY = 5;
 
         public SpriteRenderer()
         {
 
         }
 
-        public SpriteRenderer(string inFilename, bool inIsAnimation = false)
-        {
-            LoadBmp(inFilename);
-            isAnimaion = inIsAnimation;
-        }
-
         public override void Update()
         {
-        }
+            int X = gameObject.transform.X;
+            int Y = gameObject.transform.Y;
 
-        public virtual void Render()
-        {
-            int X = 0;
-            int Y = 0;
-
-            Engine.backBuffer[Y, X] = Shape;
-            SDL.SDL_Rect myRect;
-            myRect.x = X * spriteSize;
-            myRect.y = Y * spriteSize;
-            myRect.w = spriteSize;
-            myRect.h = spriteSize;
+            //Screen bitmap
+            destinationRect.x = X * spriteSize;
+            destinationRect.y = Y * spriteSize;
+            destinationRect.w = spriteSize;
+            destinationRect.h = spriteSize;
 
             unsafe
             {
-                //이미지 정보 가져와서 할일이 있음
                 SDL.SDL_Surface* surface = (SDL.SDL_Surface*)(mySurface);
-
-                SDL.SDL_Rect sourceRect; //이미지
 
                 if (isAnimaion)
                 {
-                    if (elapsedTime >= 100.0f)
+                    if (elapsedTime >= processTime)
                     {
                         spriteIndexX++;
-                        spriteIndexX = spriteIndexX % 5;
+                        spriteIndexX = spriteIndexX % maxCellCountX;
                         elapsedTime = 0;
                     }
                     else
@@ -78,8 +70,8 @@ namespace L20250217
                     }
 
 
-                    int cellSizeX = surface->w / 5;
-                    int cellSizeY = surface->h / 5;
+                    int cellSizeX = surface->w / maxCellCountX;
+                    int cellSizeY = surface->h / maxCellCountY;
                     sourceRect.x = cellSizeX * spriteIndexX;
                     sourceRect.y = cellSizeY * spriteIndexY;
                     sourceRect.w = cellSizeX;
@@ -92,18 +84,34 @@ namespace L20250217
                     sourceRect.w = surface->w;
                     sourceRect.h = surface->h;
                 }
-
-                SDL.SDL_RenderCopy(Engine.Instance.myRenderer,
-                    myTexture,
-                    ref sourceRect,
-                    ref myRect);
             }
         }
 
-        public void LoadBmp(string filename)
+        public virtual void Render()
         {
+            int X = gameObject.transform.X;
+            int Y = gameObject.transform.Y;
+
+            //Console
+            Engine.backBuffer[Y, X] = Shape;
+
+            unsafe
+            {
+                SDL.SDL_RenderCopy(Engine.Instance.myRenderer,
+                    myTexture,
+                    ref sourceRect,
+                    ref destinationRect);
+            }
+        }
+
+        public void LoadBmp(string inFilename, bool inIsAnimation = false)
+        {
+            string projectFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            isAnimaion = inIsAnimation;
+            filename = inFilename;
+
             //SDL C, 접근 할 수 있는게 없어서
-            mySurface = SDL.SDL_LoadBMP(filename);
+            mySurface = SDL.SDL_LoadBMP(projectFolder + "/data/" + filename);
             unsafe
             {
                 //이미지 정보 가져와서 할일이 있음
@@ -117,3 +125,4 @@ namespace L20250217
         }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using SDL2;
 using System;
+using System.Numerics;
 
 namespace L20250217
 {
@@ -111,12 +112,42 @@ namespace L20250217
                     }
                     else if (scene[y][x] == 'P')
                     {
-                        Player player = new Player(x, y, scene[y][x]);
+                        GameObject player = new GameObject();
+                        player.Name = "Player";
+                        player.transform.X = x;
+                        player.transform.Y = y;
+
+                        player.AddComponent<PlayerController>(new PlayerController());
+                        SpriteRenderer spriteRenderer = player.AddComponent<SpriteRenderer>(new SpriteRenderer());
+                        spriteRenderer.colorKey.r = 255;
+                        spriteRenderer.colorKey.g = 0;
+                        spriteRenderer.colorKey.b = 255;
+                        spriteRenderer.colorKey.a = 255;
+                        spriteRenderer.LoadBmp("player.bmp", true);
+                        spriteRenderer.processTime = 150.0f;
+                        spriteRenderer.maxCellCountX = 5;
+
+                        spriteRenderer.Shape = 'P';
+
                         world.Instanciate(player);
                     }
                     else if (scene[y][x] == 'M')
                     {
-                        Monster monster = new Monster(x, y, scene[y][x]);
+                        GameObject monster = new GameObject();
+                        monster.Name = "Monster";
+                        monster.transform.X = x;
+                        monster.transform.Y = y;
+
+                        SpriteRenderer spriteRenderer = monster.AddComponent<SpriteRenderer>(new SpriteRenderer());
+                        spriteRenderer.colorKey.r = 255;
+                        spriteRenderer.colorKey.g = 255;
+                        spriteRenderer.colorKey.b = 255;
+                        spriteRenderer.colorKey.a = 255;
+                        spriteRenderer.LoadBmp("monster.bmp");
+
+                        spriteRenderer.Shape = 'M';
+
+
                         world.Instanciate(monster);
                     }
                     else if (scene[y][x] == 'G')

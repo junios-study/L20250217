@@ -32,16 +32,24 @@ namespace L20250217
         {
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Update();
+                foreach(Component component in gameObjects[i].components)
+                {
+                    component.Update();
+                }
             }
         }
 
         public void Render()
         {
-            //for (int i = 0; i < gameObjects.Count; i++)
-            //{
-            //    gameObjects[i].Render();
-            //}
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                SpriteRenderer spriteRender = gameObjects[i].GetComponent<SpriteRenderer>();
+                if (spriteRender != null)
+                {
+                    spriteRender.Render();
+                }
+
+            }
         }
 
         public void Sort()
