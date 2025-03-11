@@ -12,53 +12,41 @@ namespace L20250217
 
         private float elapsedTime = 0;
 
-        public AIController(int inX, int inY, char inShape)
+        public CharacterController2D characterController2D;
+
+        public override void Awake()
         {
+            characterController2D = GetComponent<CharacterController2D>();
         }
 
         public override void Update()
         {
-            //if (elapsedTime >= 500.0f)
-            //{
-            //    int Direction = rand.Next(0, 4);
+            if (elapsedTime >= 500.0f)
+            {
+                int Direction = rand.Next(0, 4);
 
-            //    if (Direction == 0)
-            //    {
-            //        if (!PredictCollision(X, Y - 1))
-            //        {
-            //            Y--;
-            //        }
-            //    }
-            //    if (Direction == 1)
-            //    {
-            //        if (!PredictCollision(X, Y + 1))
-            //        {
-            //            Y++;
-            //        }
-            //    }
-            //    if (Direction == 2)
-            //    {
-            //        if (!PredictCollision(X - 1, Y))
-            //        {
-            //            X--;
-            //        }
-            //    }
-            //    if (Direction == 3)
-            //    {
-            //        if (!PredictCollision(X + 1, Y))
-            //        {
-            //            X++;
-            //        }
-            //    }
-            //    elapsedTime = 0;
-            //}
-            //else
-            //{
-            //    elapsedTime += Time.deltaTime;
-            //}
-
-            //Console.SetCursorPosition(30, 10);
-            //Console.Write(Time.deltaTime);
+                if (Direction == 0)
+                {
+                    characterController2D.Move(0, -1);
+                }
+                if (Direction == 1)
+                {
+                    characterController2D.Move(0, 1);
+                }
+                if (Direction == 2)
+                {
+                    characterController2D.Move(-1, 0);
+                }
+                if (Direction == 3)
+                {
+                    characterController2D.Move(1, 0);
+                }
+                elapsedTime = 0;
+            }
+            else
+            {
+                elapsedTime += Time.deltaTime;
+            }
         }
     }
 }

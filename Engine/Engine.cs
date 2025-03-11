@@ -109,7 +109,7 @@ namespace L20250217
                         wall.transform.X = x;
                         wall.transform.Y = y;
 
-                        SpriteRenderer spriteRenderer = wall.AddComponent(new SpriteRenderer());
+                        SpriteRenderer spriteRenderer = wall.AddComponent<SpriteRenderer>();
                         spriteRenderer.colorKey.r = 255;
                         spriteRenderer.colorKey.g = 255;
                         spriteRenderer.colorKey.b = 255;
@@ -118,6 +118,10 @@ namespace L20250217
                         spriteRenderer.orderLayer = 2;
 
                         spriteRenderer.Shape = '*';
+
+
+                        wall.AddComponent<BoxCollider2D>();
+
                         world.Instanciate(wall);
                     }
                     else if (scene[y][x] == ' ')
@@ -133,7 +137,7 @@ namespace L20250217
                         player.transform.Y = y;
 
                         player.AddComponent(new PlayerController());
-                        SpriteRenderer spriteRenderer = player.AddComponent(new SpriteRenderer());
+                        SpriteRenderer spriteRenderer = player.AddComponent<SpriteRenderer>();
                         spriteRenderer.colorKey.r = 255;
                         spriteRenderer.colorKey.g = 0;
                         spriteRenderer.colorKey.b = 255;
@@ -144,6 +148,9 @@ namespace L20250217
                         spriteRenderer.orderLayer = 3;
 
                         spriteRenderer.Shape = 'P';
+
+                        player.AddComponent<CharacterController2D>();
+
 
                         world.Instanciate(player);
                     }
@@ -163,6 +170,10 @@ namespace L20250217
                         spriteRenderer.orderLayer = 4;
 
                         spriteRenderer.Shape = 'M';
+
+                        monster.AddComponent<AIController>(new AIController());
+                        monster.AddComponent<CharacterController2D>();
+
 
 
                         world.Instanciate(monster);
