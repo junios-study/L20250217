@@ -33,8 +33,8 @@ namespace L20250217
 
         protected bool isRunning = true;
 
-        public IntPtr myWindow;
-        public IntPtr myRenderer;
+        public nint myWindow;
+        public nint myRenderer;
         public SDL.SDL_Event myEvent;
 
         public bool Init()
@@ -102,7 +102,20 @@ namespace L20250217
                 {
                     if ( scene[y][x] == '*' )
                     {
-                        Wall wall = new Wall(x, y, scene[y][x]);
+                        GameObject wall = new GameObject();
+                        wall.Name = "Wall";
+                        wall.transform.X = x;
+                        wall.transform.Y = y;
+
+                        SpriteRenderer spriteRenderer = wall.AddComponent(new SpriteRenderer());
+                        spriteRenderer.colorKey.r = 255;
+                        spriteRenderer.colorKey.g = 255;
+                        spriteRenderer.colorKey.b = 255;
+                        spriteRenderer.colorKey.a = 255;
+                        spriteRenderer.LoadBmp("wall.bmp");
+                        spriteRenderer.orderLayer = 2;
+
+                        spriteRenderer.Shape = '*';
                         world.Instanciate(wall);
                     }
                     else if (scene[y][x] == ' ')
@@ -117,8 +130,8 @@ namespace L20250217
                         player.transform.X = x;
                         player.transform.Y = y;
 
-                        player.AddComponent<PlayerController>(new PlayerController());
-                        SpriteRenderer spriteRenderer = player.AddComponent<SpriteRenderer>(new SpriteRenderer());
+                        player.AddComponent(new PlayerController());
+                        SpriteRenderer spriteRenderer = player.AddComponent(new SpriteRenderer());
                         spriteRenderer.colorKey.r = 255;
                         spriteRenderer.colorKey.g = 0;
                         spriteRenderer.colorKey.b = 255;
@@ -126,6 +139,7 @@ namespace L20250217
                         spriteRenderer.LoadBmp("player.bmp", true);
                         spriteRenderer.processTime = 150.0f;
                         spriteRenderer.maxCellCountX = 5;
+                        spriteRenderer.orderLayer = 3;
 
                         spriteRenderer.Shape = 'P';
 
@@ -138,12 +152,13 @@ namespace L20250217
                         monster.transform.X = x;
                         monster.transform.Y = y;
 
-                        SpriteRenderer spriteRenderer = monster.AddComponent<SpriteRenderer>(new SpriteRenderer());
+                        SpriteRenderer spriteRenderer = monster.AddComponent(new SpriteRenderer());
                         spriteRenderer.colorKey.r = 255;
                         spriteRenderer.colorKey.g = 255;
                         spriteRenderer.colorKey.b = 255;
                         spriteRenderer.colorKey.a = 255;
                         spriteRenderer.LoadBmp("monster.bmp");
+                        spriteRenderer.orderLayer = 4;
 
                         spriteRenderer.Shape = 'M';
 
@@ -152,12 +167,43 @@ namespace L20250217
                     }
                     else if (scene[y][x] == 'G')
                     {
-                        Goal goal = new Goal(x, y, scene[y][x]);
+                        GameObject goal = new GameObject();
+                        goal.Name = "Goal";
+                        goal.transform.X = x;
+                        goal.transform.Y = y;
+
+                        SpriteRenderer spriteRenderer = goal.AddComponent(new SpriteRenderer());
+                        spriteRenderer.colorKey.r = 255;
+                        spriteRenderer.colorKey.g = 255;
+                        spriteRenderer.colorKey.b = 255;
+                        spriteRenderer.colorKey.a = 255;
+                        spriteRenderer.LoadBmp("goal.bmp");
+                        spriteRenderer.orderLayer = 2;
+
+
+                        spriteRenderer.Shape = 'G';
+
                         world.Instanciate(goal);
                     }
 
-                    Floor floor = new Floor(x, y, ' ');
+                    GameObject floor = new GameObject();
+                    floor.Name = "Floor";
+                    floor.transform.X = x;
+                    floor.transform.Y = y;
+
+                    SpriteRenderer spriteRenderer2 = floor.AddComponent(new SpriteRenderer());
+                    spriteRenderer2.colorKey.r = 255;
+                    spriteRenderer2.colorKey.g = 255;
+                    spriteRenderer2.colorKey.b = 255;
+                    spriteRenderer2.colorKey.a = 255;
+                    spriteRenderer2.LoadBmp("floor.bmp");
+                    spriteRenderer2.orderLayer = 1;
+
+
+                    spriteRenderer2.Shape = ' ';
+
                     world.Instanciate(floor);
+
                 }
             }
 
@@ -188,9 +234,9 @@ namespace L20250217
             {
                 for(int X = 0; X < 40; ++X)
                 {
-                    if (Engine.frontBuffer[Y, X] != Engine.backBuffer[Y, X])
+                    if (frontBuffer[Y, X] != backBuffer[Y, X])
                     {
-                        Engine.frontBuffer[Y, X] = Engine.backBuffer[Y, X];
+                        frontBuffer[Y, X] = backBuffer[Y, X];
                         Console.SetCursorPosition(X, Y);
                         Console.Write(frontBuffer[Y, X]);
                     }
