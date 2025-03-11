@@ -5,56 +5,30 @@ using System.Text;
 
 namespace L20250217
 {
-
-    public class Sample
-    {
-        public delegate int Command(int a, int b);
-
-        public Command command;
-
-        public void Sort()
-        {
-            if (command(1, 2) > 0)
-            {
-                //교환
-            }
-        }
-    }
-
     public class Program
     {
-        static int Add(int A, int B)
+        public static int Compare(GameObject first, GameObject second)
         {
-            return A + B;
+            SpriteRenderer spriteRenderer1 = first.GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer2 = second.GetComponent<SpriteRenderer>();
+            if (spriteRenderer1 == null || spriteRenderer2 == null)
+            {
+                return 0;
+            }
+
+            return spriteRenderer1.orderLayer - spriteRenderer2.orderLayer;
         }
 
-        static int Sub(int A, int B)
+
+        public static void Main(string[] args)
         {
-            return A - B;
-        }
+            Engine.Instance.Init();
+            Engine.Instance.SetSortCompare(Compare);
 
-        int Mul(int A, int B)
-        {
-            return A* B;
-        }
+            Engine.Instance.Load("level01.map");
+            Engine.Instance.Run();
 
-        static void Main(string[] args)
-        {
-            Sample.Command command = new Sample.Command((int A, int B) => {
-                return A * B;
-            });
-            Console.WriteLine(command(33, 33));
-
-            //Sample sample = new Sample();
-            //sample.command = Add;
-            //sample.Sort();
-
-            //Engine.Instance.Init();
-
-            //Engine.Instance.Load("level01.map");
-            //Engine.Instance.Run();
-
-            //Engine.Instance.Quit();
+            Engine.Instance.Quit();
         }
     }
 }

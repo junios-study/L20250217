@@ -8,6 +8,10 @@ namespace L20250217
 {
     public class World
     {
+        public delegate int SortCompare(GameObject first, GameObject second);
+
+        public SortCompare sortCompare;
+
         List<GameObject> gameObjects = new List<GameObject>();
         //List<GameObject> visibleList = new List<GameObject>();
 
@@ -58,14 +62,8 @@ namespace L20250217
             {
                 for (int j = i + 1; j < gameObjects.Count; j++)
                 {
-                    SpriteRenderer spriteRenderer1 = gameObjects[i].GetComponent<SpriteRenderer>();
-                    SpriteRenderer spriteRenderer2 = gameObjects[j].GetComponent<SpriteRenderer>();
-                    if (spriteRenderer1 == null || spriteRenderer2 == null)
-                    {
-                        continue;
-                    }
-
-                    if (spriteRenderer1.orderLayer - spriteRenderer2.orderLayer > 0)
+                  
+                    if (sortCompare(gameObjects[i], gameObjects[j]) > 0)
                     {
                         GameObject temp = gameObjects[i];
                         gameObjects[i] = gameObjects[j];

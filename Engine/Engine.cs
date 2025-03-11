@@ -37,6 +37,8 @@ namespace L20250217
         public nint myRenderer;
         public SDL.SDL_Event myEvent;
 
+        public World world;
+
         public bool Init()
         {
             if (SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING) < 0)
@@ -54,6 +56,8 @@ namespace L20250217
             myRenderer = SDL.SDL_CreateRenderer(myWindow, -1, SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
                 SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC |
                 SDL.SDL_RendererFlags.SDL_RENDERER_TARGETTEXTURE);
+
+            world = new World();
 
             return true;
         }
@@ -93,8 +97,6 @@ namespace L20250217
             }            
             sr.Close();
 
-
-            world = new World();
 
             for (int y = 0; y < scene.Count; y++)
             {
@@ -269,7 +271,9 @@ namespace L20250217
             }
         }
 
-
-        public World world;
+        public void SetSortCompare(World.SortCompare inSortCompare)
+        {
+            world.sortCompare = inSortCompare;
+        }
     }
 }
