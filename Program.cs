@@ -38,17 +38,32 @@ namespace L20250217
             Console.WriteLine("Test");
         }
 
+        public static void Test1(int a)
+        {
+            Console.WriteLine($"Test {a}");
+        }
+
+        public static int Test2(int a)
+        {
+            Console.WriteLine($"Test2 {a}");
+
+            return a;
+        }
+
+        public delegate void DelegateSample();
+        public delegate void DelegateSample1(int a);
+
         public static void Main(string[] args)
         {
+            //클래스 결합도를 낮춘다.
+            DelegateSample d = Test;
+            DelegateSample1 d1 = Test1;
 
-            EventClass eventClass = new EventClass();
-
-            eventClass.delegateSample = Test;
-            eventClass.delegateSample(); //문법적으로 맞지만 논리적으로 틀린
-
-
-            eventClass.EventSample += Test; //구독
-            eventClass.EventSample -= Test; //구독 해지
+            Action<int> helloAction = Test1;
+            helloAction += Test1;
+            helloAction(1);
+            Func<int, int> f = Test2;
+            Console.WriteLine(f(2));
 
 
             //Engine.Instance.Init();
