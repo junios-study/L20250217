@@ -63,6 +63,11 @@ namespace L20250217
             helloAction += Test1;
             helloAction(1);
             Func<int, int> f = Test2;
+            f += (int number) =>
+            {
+                Console.WriteLine($"number {number}");
+                return 10;
+            };
             Console.WriteLine(f(2));
 
 
