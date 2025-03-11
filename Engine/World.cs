@@ -62,7 +62,7 @@ namespace L20250217
             {
                 for (int j = i + 1; j < gameObjects.Count; j++)
                 {
-                  
+                    //문법 연습
                     if (sortCompare(gameObjects[i], gameObjects[j]) > 0)
                     {
                         GameObject temp = gameObjects[i];
