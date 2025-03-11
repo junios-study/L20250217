@@ -25,7 +25,6 @@ namespace L20250217
             if (Input.GetKeyDown(SDL_Keycode.SDLK_w) || Input.GetKeyDown(SDL_Keycode.SDLK_UP))
             {
                 characterController2D.Move(0, -1);
-               
                 spriteRenderer.spriteIndexY = 2;
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_s) || Input.GetKeyDown(SDL_Keycode.SDLK_DOWN))
@@ -45,6 +44,11 @@ namespace L20250217
                 characterController2D.Move(1, 0);
                 spriteRenderer.spriteIndexY = 1;
             }
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            Console.WriteLine($"겹침 감지 : {other.gameObject.Name}");
         }
     }
 }

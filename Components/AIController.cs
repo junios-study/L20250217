@@ -21,6 +21,7 @@ namespace L20250217
 
         public override void Update()
         {
+            return;
             if (elapsedTime >= 500.0f)
             {
                 int Direction = rand.Next(0, 4);
@@ -47,6 +48,11 @@ namespace L20250217
             {
                 elapsedTime += Time.deltaTime;
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Console.WriteLine($"겸침 감지 : {other.gameObject.Name}");
         }
     }
 }

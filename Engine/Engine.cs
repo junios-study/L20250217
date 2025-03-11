@@ -151,7 +151,6 @@ namespace L20250217
 
                         player.AddComponent<CharacterController2D>();
 
-
                         world.Instanciate(player);
                     }
                     else if (scene[y][x] == 'M')
@@ -171,8 +170,11 @@ namespace L20250217
 
                         spriteRenderer.Shape = 'M';
 
+
                         monster.AddComponent<AIController>(new AIController());
-                        monster.AddComponent<CharacterController2D>();
+                        CharacterController2D characterController2D = monster.AddComponent<CharacterController2D>();
+                        characterController2D.isTrigger = true;
+
 
 
 

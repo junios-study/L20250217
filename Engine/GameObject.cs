@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -85,6 +86,22 @@ namespace L20250217
             }
 
             return null;
+        }
+
+        public void ExecuteMethod(string methodName, Object[] parameters)
+        {
+            foreach (var component in components)
+            {
+                Type type = component.GetType();
+                MethodInfo[] methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                foreach (var methodInfo in methodInfos)
+                {
+                    if (methodInfo.Name.CompareTo(methodName) == 0)
+                    {
+                        methodInfo.Invoke(component, parameters);
+                    }
+                }
+            }
         }
     }
 }
