@@ -41,6 +41,7 @@ namespace L20250217
         {
             components.Add(inComponent);
             inComponent.gameObject = this;
+            inComponent.transform = transform;
 
             return inComponent;
         }

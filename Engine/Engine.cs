@@ -212,6 +212,8 @@ namespace L20250217
             //loading complete
             //sort
             world.Sort();
+
+            Awake();
         }
 
         public void ProcessInput()
@@ -253,6 +255,7 @@ namespace L20250217
         {
             Console.CursorVisible = false;
 
+
             while (isRunning)
             {
                 SDL.SDL_PollEvent(out myEvent);
@@ -269,6 +272,11 @@ namespace L20250217
                 Update();
                 Render();
             }
+        }
+
+        public void Awake()
+        {
+            world.Awake();
         }
 
         public void SetSortCompare(World.SortCompare inSortCompare)

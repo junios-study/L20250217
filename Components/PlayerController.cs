@@ -10,40 +10,47 @@ namespace L20250217
 {
     public class PlayerController : Component
     {
+        public SpriteRenderer spriteRenderer;
+
+        public override void Awake()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
         public override void Update()
         {
             if (Input.GetKeyDown(SDL_Keycode.SDLK_w) || Input.GetKeyDown(SDL_Keycode.SDLK_UP))
             {
                 //if (!PredictCollision(X, Y - 1))
                 //{
-                //    Y--;
+                   transform.Y--;
                 //}
-                //spriteIndexY = 2;
+                spriteRenderer.spriteIndexY = 2;
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_s) || Input.GetKeyDown(SDL_Keycode.SDLK_DOWN))
             {
                 //if (!PredictCollision(X, Y + 1))
                 //{
-                //    Y++;
+                    transform.Y++;
                 //}
-                //spriteIndexY = 3;
+                spriteRenderer.spriteIndexY = 3;
 
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_a) || Input.GetKeyDown(SDL_Keycode.SDLK_LEFT))
             {
                 //if (!PredictCollision(X - 1, Y))
                 //{
-                //    X--;
+                    transform.X--;
                 //}
-                //spriteIndexY = 0;
+                spriteRenderer.spriteIndexY = 0;
             }
             if (Input.GetKeyDown(SDL_Keycode.SDLK_d) || Input.GetKeyDown(SDL_Keycode.SDLK_RIGHT))
             {
                 //if (!PredictCollision(X + 1, Y))
                 //{
-                //    X++;
+                    transform.X++;
                 //}
-                //spriteIndexY = 1;
+                spriteRenderer.spriteIndexY = 1;
             }
         }
     }

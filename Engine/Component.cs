@@ -17,6 +17,8 @@ namespace L20250217
 
         public GameObject gameObject;
 
+        public Transform transform;
+
         public T GetComponent<T>() where T : Component
         {
             foreach(Component component in gameObject.components)
