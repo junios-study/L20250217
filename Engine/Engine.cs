@@ -1,6 +1,8 @@
 ﻿using SDL2;
 using System;
+using System.Drawing;
 using System.Numerics;
+using System.Threading;
 
 namespace L20250217
 {
@@ -64,6 +66,7 @@ namespace L20250217
 
         public bool Quit()
         {
+            isRunning = false;
             SDL.SDL_DestroyRenderer(myRenderer);
             SDL.SDL_DestroyWindow(myWindow);
 
@@ -195,6 +198,7 @@ namespace L20250217
                         spriteRenderer.LoadBmp("goal.bmp");
                         spriteRenderer.orderLayer = 2;
 
+                        goal.AddComponent<CharacterController2D>().isTrigger = true;
 
                         spriteRenderer.Shape = 'G';
 
@@ -218,8 +222,15 @@ namespace L20250217
                     spriteRenderer2.Shape = ' ';
 
                     world.Instanciate(floor);
-
                 }
+
+                //심판 생성
+                GameObject gameManager = new GameObject();
+                gameManager.Name = "GameManager";
+
+                gameManager.AddComponent<GameManager>();
+                world.Instanciate(gameManager);
+
             }
 
             //loading complete
