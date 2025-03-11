@@ -41,6 +41,8 @@ namespace L20250217
 
         public World world;
 
+        public IntPtr Font;
+
         public bool Init()
         {
             if (SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING) < 0)
@@ -59,6 +61,12 @@ namespace L20250217
                 SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC |
                 SDL.SDL_RendererFlags.SDL_RENDERER_TARGETTEXTURE);
 
+            string projectFolder = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+
+            SDL_ttf.TTF_Init();
+            //SDL_ttf.TTF_OpenFont(projectFolder + "/data/", 30);
+            Font = SDL_ttf.TTF_OpenFont("c:/Windows/Fonts/gulim.ttc", 30);
+
             world = new World();
 
             return true;
@@ -67,6 +75,9 @@ namespace L20250217
         public bool Quit()
         {
             isRunning = false;
+
+            SDL_ttf.TTF_Quit();
+
             SDL.SDL_DestroyRenderer(myRenderer);
             SDL.SDL_DestroyWindow(myWindow);
 
@@ -78,19 +89,6 @@ namespace L20250217
 
         public void Load(string filename)
         {
-            //string tempScene = "";
-            //byte[] buffer = new byte[1024];
-            //FileStream fs = new FileStream("level01.map", FileMode.Open);
-
-            //fs.Seek(0, SeekOrigin.End);
-            //long fileSize = fs.Position;
-
-            //fs.Seek(0, SeekOrigin.Begin);
-            //int readCount = fs.Read(buffer, 0, (int)fileSize);
-            //tempScene = Encoding.UTF8.GetString(buffer);
-            //tempScene = tempScene.Replace("\0", "");
-            //string[] scene = tempScene.Split("\r\n");
-
             List<string> scene = new List<string>();
 
             StreamReader sr = new StreamReader(filename);

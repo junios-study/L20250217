@@ -47,7 +47,7 @@ namespace L20250217
         {
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                SpriteRenderer spriteRender = gameObjects[i].GetComponent<SpriteRenderer>();
+                Renderer spriteRender = gameObjects[i].GetComponent<Renderer>();
                 if (spriteRender != null)
                 {
                     spriteRender.Render();
