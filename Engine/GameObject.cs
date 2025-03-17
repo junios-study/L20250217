@@ -21,6 +21,7 @@ namespace L20250217
 
         public Transform transform;
 
+
         public GameObject()
         {
             Init();

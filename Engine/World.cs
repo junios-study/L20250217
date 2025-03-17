@@ -21,6 +21,10 @@ namespace L20250217
             {
                 return gameObjects;
             }
+            set
+            {
+                gameObjects = value;
+            }
         }
 
         //[1][0][2][3][5][6][7][8][9]
